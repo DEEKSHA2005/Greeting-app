@@ -23,4 +23,15 @@ public class GreetingService {
     public List<Greeting> getAllGreetings() {
         return greetingRepository.findAll();
     }
+
+    public Greeting updateGreeting(Long id, Greeting greetingDetails) {
+        Greeting greeting = greetingRepository.findById(id).orElse(null);
+
+        if (greeting != null) {
+            greeting.setMessage(greetingDetails.getMessage());
+            return greetingRepository.save(greeting);
+        }
+
+        return null;
+    }
 }
